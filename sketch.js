@@ -37,9 +37,8 @@ function setup(){
     log4 = new Log(760,120,150, PI/7);
     log5 = new Log(870,120,150, -PI/7);
 
-    bird = new Bird(100,100);
-    log6 = new Log(230, 180, 80, PI/2);
-    cbound = new Cbind(bird.body, log6.body);
+    bird = new Bird(200,50);
+    cbound = new Cbind(bird.body, {x:200, y:50});
 }
 
 function draw(){
@@ -64,10 +63,19 @@ function draw(){
     log5.display();
 
     bird.display();
-    log6.display();
     cbound.display();
 
     platform.display();
     
   
+}
+
+function mouseDragged(){
+    //bird follows the mouse
+    Matter.Body.setPosition(bird.body,{x:mouseX,y:mouseY})
+
+}
+
+function mouseReleased(){
+cbound.fly()   
 }
